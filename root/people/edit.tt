@@ -1,0 +1,5 @@
+<div class="page-header">
+  <h1><a href="/pessoas">Pessoas</a> » <a href="/pessoas/[% person.id %]">[% person.name %]</a> » Editar</h1>
+</div>
+
+[% form %]

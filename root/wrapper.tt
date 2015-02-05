@@ -1,0 +1,91 @@
+[% IF no_wrapper; content; ELSE %]
+
+<html>
+  <head>
+    <link href="[% c.uri_for('/static/css/bootstrap.min.css') %]" rel="stylesheet" media="screen">
+    <link href="[% c.uri_for('/static/css/select2.min.css') %]" rel="stylesheet" media="screen">
+    <link href="[% c.uri_for('/static/css/select2-bootstrap.css') %]" rel="stylesheet" media="screen">
+    <link href="[% c.uri_for('/static/css/helena.css') %]" rel="stylesheet" media="screen">
+
+    <script src="[% c.uri_for('/static/js/jquery.js') %]"></script>
+    <script src="[% c.uri_for('/static/js/bootstrap.min.js') %]"></script>
+    <script src="[% c.uri_for('/static/js/select2.min.js') %]"></script>
+    <script src="[% c.uri_for('/static/js/helena.js') %]"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Helena</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              [% IF c.user_exists %]
+              <li><a href="/">Início</a></li>
+              <li><a href="/meus-processos">Meus Processos</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-expanded="false">Pessoas <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/pessoas">Listar</a></li>
+                  <li><a href="/pessoas/adicionar">Adicionar</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-expanded="false">Processos <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/processos">Listar</a></li>
+                  <li><a href="/processos/adicionar">Adicionar</a></li>
+                </ul>
+              </li>
+              <!--<li><a href="/">Admin</a></li>-->
+              <li><a href="/sair">Sair ([% c.user.email %])</a></li>
+              [% END %]
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      [% IF c.flash.success_msg %]
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        [% c.flash.success_msg %]
+      </div>
+      [% END %]
+
+      [% IF c.flash.info_msg %]
+      <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        [% c.flash.info_msg %]
+      </div>
+      [% END %]
+
+      [% IF c.flash.error_msg %]
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        [% c.flash.error_msg %]
+      </div>
+      [% END %]
+
+      [% content %]
+    </div><!-- /.container -->
+    <br><br>
+  </body>
+</html>
+[% END %]

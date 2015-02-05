@@ -1,0 +1,28 @@
+<nav style="text-align: center;">
+  <ul class="pagination">
+    <li class="[% IF pager.current_page == pager.first_page %]disabled[% END %]">
+      <a href="[% c.request.uri_with( pagina => pager.first_page ) %]">
+        Primeira Página
+      </a>
+    </li>
+    <li class="[% IF !pager.previous_page %]disabled[% END %]">
+      <a href="[% c.request.uri_with( pagina => pager.previous_page ) %]">
+        ←
+      </a>
+    </li>
+
+    <li class="active"><a href="#">Página [% pager.current_page %]</a></li>
+
+    <li class="[% IF !pager.next_page %]disabled[% END %]">
+      <a href="[% c.request.uri_with( pagina => pager.next_page ) %]">
+        →
+      </a>
+    </li>
+
+    <li class="[% IF pager.current_page == pager.last_page %]disabled[% END %]">
+      <a href="[% c.request.uri_with( pagina => pager.last_page ) %]">
+        Última Página
+      </a>
+    </li>
+  </ul>
+</nav>

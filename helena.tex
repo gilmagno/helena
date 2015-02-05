@@ -1,0 +1,125 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage[hidelinks]{hyperref}
+
+\title{Sistema Helena}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\section{Visão Geral}
+
+Sistema gerenciará os procedimentos no NPJ. Nele (sistema) serão
+cadastrados, principalmente, \textit{usuários}, \textit{pessoas},
+\textit{processos} e \textit{comentários} nos processos, que
+descreverão seu andamento. Outros itens serão cadastrados, mas de
+forma auxiliar.
+
+Ao chegar no NPJ, o assistido irá para a recepção, onde o
+recepcionista o cadastrará, caso já não esteja cadastrado. O
+recepcionista, para o sistema, é um \textit{usuário}; o assistido,
+para o sistema, é uma \textit{pessoa}. Após cadastrar o assistido, o
+recepcionista poderá cadastrar seu processo. É necessário cadastrar a
+pessoa antes de cadastrar seu processo porque, no cadastro do
+processo, escolheremos os assistidos do processo (que são pessoas).
+
+Neste momento, o assistido estará cadastrado e haverá para ele um
+processo cadastrado, mas não completamente preenchido.  O assistido
+entrará na lista de espera para ser atendimento por um estagiário. O
+assistido será informado do número de seu processo.
+
+Quando sua vez chegar de ser atendido, o assistido irá até o
+estagiário e lhe informará seu número de processo. O estagiário (para
+o sistema, um usuário) acessará no sistema a listagem de processos e
+achará o processo específico do assistido; editará esse processo se
+quiser adicionar detalhes; adicionará um andamento (comentário).
+
+\section{Usuários}
+
+Usuários entram no sistema, adicionam pessoas, processos etc. Podem
+ter um ou mais papéis: administrador, coordenador, professor,
+recepcionista, estagiário etc. Ainda não definimos exatamente que
+papéis fazem o que dentro do sistema, mas podemos fazer isso depois.
+
+Haverá uma tela de cadastro de usuários.  Haverá uma tela de listagem
+de usuários. Ao clicar num dos usuários da listagem, sistema mostrará
+detalhes do usuário clicado.
+
+\section{Pessoas}
+
+Pessoas figuram nos processos como assistido, requerente etc. São
+cadastradas pelos usuários.
+
+Haverá uma tela de cadastro de pessoas.  Haverá uma tela de listagem
+de pessoas. Ao clicar numa das pessoas, sistema mostrará detalhes da
+pessoa clicada.
+
+\section{Processos}
+
+Um processo, no sistema, pode ou não representar um processo
+judicial. Um processo, no sistema, terá campos como:
+
+\begin{itemize}
+\item assistidos
+\item representantes legais
+\item requeridos
+\item responsáveis
+\item turma
+\item tipo de processo
+\item descrição
+\item data de criação
+\item outros
+\end{itemize}
+
+Haverá uma tela de listagem de processos. Nesta tela haverá uma opção
+de busca de processos. Cada processo que aparece na listagem pode ser
+clicado. Ao clicar num processo, o usuário irá para a tela de detalhes
+desse processo específico. Na tela de detalhes, verá os detalhes do
+processo e seus andamentos (próx. seção). Na tela de detalhes poderá
+também acessar a tela de edição do processo e de adição de comentário
+(próx. seção).
+
+\subsection{Comentários}
+
+Um usuário poderá adicionar comentários a um processo. Exemplo:
+assistido retornou ao NPJ para entregar documentos, mas esqueceu um
+deles; isso poderia gerar um comentário como ``assistido entregou
+documentos X e Y, no entanto, esqueceu o documento Z''.
+
+\subsection{Lembretes de Documentos}
+
+No atendimento a um assistido, o usuário deve solicitar-lhe uma série
+de documentos, dependendo do tipo de processo escolhido. Assim, um
+tipo de processo terá uma lista de documentos, e quando este tipo de
+processo for escolhido na tela de abertura de processos, a lista de
+documentos do tipo deverá ser inserida na tela para lembrar o usuário
+de pedir esses documentos ao assistido.
+
+Talvez fazer essa lista em forma de lista com \textit{checkboxes}. O
+usuário usaria os \textit{checkboxes} para informar ao sistema que
+documento foi entregue ou não.
+
+\subsection{Lembretes de Prazo por Email}
+Larissa falou sobre o sistema enviar emails no caso de alguns prazos
+estarem perto de vencer. Não lembro as situações exatas. Perguntar
+para ela.
+
+\section{Arquivos}
+Um processo vai poder ter arquivos anexados a ele, e os comentários de
+um processo também poderão ter arquivos anexados a eles. Antes de
+implementar essa funcionalidade, pensar como simplificá-la.
+
+\section{Meus Processos}
+Haverá um item no menu principal chamado \textit{Meus Processos}. Ao ser
+clicado, levará a uma tela que mostrará só os processos do usuário logado,
+considerando os processos em que seja responsável.
+
+\end{document}

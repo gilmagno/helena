@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>
+    <a href="[% c.uri_for_action('/processes/index') %]">Processos</a> »
+    <a href="[% c.uri_for_action('/processes/details', [process.id]) %]">[% process.id %]</a> »
+    Editar</h1>
+</div>
+
+[% form %]

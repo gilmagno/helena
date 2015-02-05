@@ -1,0 +1,65 @@
+<div class="page-header">
+  <h1>
+    <a href="/pessoas">Pessoas</a> »
+    <a href="/pessoas/[% person.id %]">[% person.name %]</a> »
+    Processos
+  </h1>
+</div>
+
+<h2>Como Assistido</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nº</th>
+      <th>Data de criação</th>
+      <th>Tipo</th>
+      <th>Assistidos</th>
+      <th>Requeridos</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH process IN procs_as_plaintiff %]
+    <tr>
+      <td>[% process.id %]</td>
+      <td>
+        <a href="[% c.uri_for_action('/processes/details', [process.id]) %]">
+          [% process.created.dmy('/') _ ' ' _ process.created.hms(':') %]
+        </a>
+      </td>
+      <td>[% process.process_type.name %]</td>
+      <td>[% process.plaintiffs_names.join(', ') %]</td>
+      <td>[% process.defendants_names.join(', ') %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
+
+<h2>Como Requerido</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nº</th>
+      <th>Data de criação</th>
+      <th>Tipo</th>
+      <th>Assistidos</th>
+      <th>Requeridos</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH process IN procs_as_defendant %]
+    <tr>
+      <td>[% process.id %]</td>
+      <td>
+        <a href="[% c.uri_for_action('/processes/details', [process.id]) %]">
+          [% process.created.dmy('/') _ ' ' _ process.created.hms(':') %]
+        </a>
+      </td>
+      <td>[% process.process_type.name %]</td>
+      <td>[% process.plaintiffs_names.join(', ') %]</td>
+      <td>[% process.defendants_names.join(', ') %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>

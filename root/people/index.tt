@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h1>Pessoas</h1>
+</div>
+
+<form name="search_people" class="form">
+  <div class="input-group">
+    <input type="text" name="q" class="form-control" value="[% search_query %]">
+    <div class="input-group-btn">
+      <a href="#" class="btn btn-default" onclick="clean_form(); return false;">Limpar</a>
+      <input type="submit" value="Enviar" class="btn btn-default">
+    </div>
+  </div><!-- /input-group -->
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF / CNPJ</th>
+      <th>RG</th>
+      <th>Nome da Mãe</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH person IN people %]
+    <tr>
+      <td>
+        <a href="[% c.uri_for_action('/people/details', [person.id]) %]">
+          [% person.name %]
+        </a>
+      </td>
+      <td>[% person.cnpjf %]</td>
+      <td>[% person.rg %]</td>
+      <td>[% person.mae %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
+
+[% PROCESS pagination.tt %]
+
+<script>
+'use strict';
+function clean_form() {
+    $('input[name="q"]').val('');
+    $('form').submit();
+}
+</script>

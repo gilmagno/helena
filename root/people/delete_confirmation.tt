@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1><a href="/pessoas">Pessoas</a> »
+    <a href="[% c.uri_for_action('/people/details', [person.id]) %]"> [% person.name %]</a></h1>
+</div>
+
+<dl>
+  <dt>Nome</dt>
+  <dd>[% person.name %]</dd>
+  <dt>CPF / CNPJ</dt>
+  <dd>[% person.cnpjf %]</dd>
+  <dt>Telefone</dt>
+  <dd>[% person.phone %]</dd>
+  <dt>Endereço</dt>
+  <dd>[% person.address.replace('\n', '<br>') %]</dd>
+</dl>
+
+<a href="[% c.uri_for_action('/people/delete', [person.id]) %]" class="btn btn-danger">
+  Confirmar deleção
+</a>
+
+<a href="[% c.uri_for_action('/people/details', [person.id]) %]" class="btn btn-default">
+  Cancelar
+</a>

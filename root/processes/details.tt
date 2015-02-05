@@ -1,0 +1,87 @@
+<div class="page-header">
+  <h1><a href="/processos">Processos</a> » [% process.id %]</h1>
+</div>
+
+<a href="[% c.uri_for_action('/processes/edit', [process.id]) %]" class="btn btn-default">Editar</a>
+<a href="[% c.uri_for_action('/processes/add_comment', [process.id]) %]" class="btn btn-default">Adicionar Andamento</a>
+<a href="[% c.uri_for_action('/processes/attach_file', [process.id]) %]" class="btn btn-default">Anexar Arquivo</a>
+   
+<div class="row">
+  <div class="col-lg-6 col-md-6">
+    
+    <h2>Detalhes</h2>
+
+    <dl class="dl-horizontal">
+      <dt>Nº</dt>
+      <dd>[% process.id %]</dd>
+      <dt>Assistidos</dt>
+      <dd>[% process.plaintiffs_names.join(', ') %]</dd>
+      <dt>Representantes Legais</dt>
+      <dd>[% process.representants_names.join(', ') %]</dd>
+      <dt>Requeridos</dt>
+      <dd>[% process.defendants_names.join(', ') %]</dd>
+      <dt>Tipo</dt>
+      <dd>[% process.process_type.name %]</dd>
+      <dt>Responsáveis</dt>
+      <dd>[% process.keepers_names.join(', ') %]</dd>
+      <dt>Turma</dt>
+      <dd>[% process.class.name %]</dd>
+      <dt>Nº do processo judicial</dt>
+      <dd>[% process.judicial_process_number %]</dd>
+      <dt>Descrição</dt>
+      <dd>[% process.description.replace('\n', '<br>') %]</dd>
+      <dt>Data de Criação</dt>
+      <dd>[% process.created.strftime('%d/%m/%y %H:%M') %]</dd>
+      <dt>Status</dt>
+      <dd>[% process.status %]</dd>
+      <dt>Ativação</dt>
+      <dd>[% process.active_str %]</dd>
+    </dl>
+
+    <h2>Arquivos</h2>
+    [% IF process.process_files.size > 0 %]
+    [% FOREACH file IN process.process_files %]
+    <div>
+      <a href="[% c.uri_for_action('/processes/get_attached_file', [process.id, file.uuid]) %]">
+        [% file.filename %]
+      </a>
+      ([% file.created.dmy('/') %])
+      [% IF c.check_user_roles('admin') %]
+      <a href="[% c.uri_for_action('/processes/delete_attached_file', [process.id, file.uuid]) %]">deletar</a>
+      [% END %]
+    </div>
+    [% END %]
+    [% ELSE %]
+    <p>Não há arquivos ainda neste processo.</p>
+    [% END %]
+  </div>
+  <div class="col-lg-6 col-md-6">
+    <h2>Andamento</h2>
+
+    [% IF comments.size > 0 %]
+    [% counter = 0; FOREACH comment IN comments %]
+    [% IF counter > 0; '<hr>'; END %]
+    [% counter = counter + 1 %]
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          [% comment.register.name %] em [% comment.created.strftime('%d/%m/%y %H:%M') %]
+        </h4>          
+        [% comment.body.replace('\n', '<br>') %]
+
+        [% IF c.check_user_roles('admin') %]
+        <div>
+          <a href="[% c.uri_for_action('/processes/delete_comment', [process.id, comment.id]) %]">
+            deletar
+          </a>
+        </div>
+        [% END %]
+
+      </div>
+    </div>
+    [% END %]
+    [% ELSE %]
+    <p>Não há andamentos ainda neste processo.</p>
+    [% END %]
+  </div>
+</div>

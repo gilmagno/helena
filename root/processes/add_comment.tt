@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1>
+    <a href="[% c.uri_for_action('/processes/index') %]">Processos</a> »
+    <a href="[% c.uri_for_action('/processes/details', [process.id]) %]">[% process.id %]</a> »
+    Adicionar Comentário</h1>
+</div>
+
+
+
+
+<form role="form" method="post">
+  <div class="form-group">
+    <label>Texto</label>
+    <textarea name="body" class="form-control" rows="15"></textarea>
+  </div>
+  <input type="submit" value="Enviar" class="btn btn-primary">
+</form>

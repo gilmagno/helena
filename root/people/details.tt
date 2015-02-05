@@ -1,0 +1,36 @@
+<div class="page-header">
+  <h1><a href="/pessoas">Pessoas</a> » [% person.name %]</h1>
+</div>
+
+<a href="[% c.uri_for_action('/people/processes', [person.id]) %]" class="btn btn-default">Processos</a>
+<a href="[% c.uri_for_action('/people/edit', [person.id]) %]" class="btn btn-default">Editar</a>
+<!--<a href="[%# c.uri_for_action('/people/delete_confirmation', [person.id]) %]" class="btn btn-default">Deletar</a>-->
+
+<br><br>
+
+<dl class="dl-horizontal">
+  <dt>Nome</dt>
+  <dd>[% person.name %]</dd>
+  <dt>Nome da Mãe</dt>
+  <dd>[% person.mother %]</dd>
+  <dt>Nome do Pai</dt>
+  <dd>[% person.father %]</dd>
+  <dt>CPF / CNPJ</dt>
+  <dd>[% person.cnpjf %]</dd>
+  <dt>RG</dt>
+  <dd>[% person.rg %]</dd>
+  <dt>Email</dt>
+  <dd>[% person.email %]</dd>
+  <dt>Telefone</dt>
+  <dd>[% person.phone %]</dd>
+  <dt>Telefone 2</dt>
+  <dd>[% person.phone2 %]</dd>
+  <dt>Telefone 3</dt>
+  <dd>[% person.phone3 %]</dd>
+  <dt>Endereço</dt>
+  <dd>[% person.address.replace('\n', '<br>') %]</dd>
+  <dt>Endereço 2</dt>
+  <dd>[% person.address2.replace('\n', '<br>') %]</dd>
+  <dt>Comentário</dt>
+  <dd>[% person.comment.replace('\n', '<br>') %]</dd>
+</dl>

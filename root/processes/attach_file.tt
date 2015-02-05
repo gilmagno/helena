@@ -1,0 +1,51 @@
+<div class="page-header">
+  <h1>
+    <a href="[% c.uri_for_action('/processes/index') %]">Processos</a> »
+    <a href="[% c.uri_for_action('/processes/details', [process.id]) %]">[% process.id %]</a> »
+    Anexar Arquivo</h1>
+</div>
+
+<div class="row">
+  <div class="col-lg-6 col-md-6">
+    
+    <h2>Detalhes</h2>
+
+    <dl class="dl-horizontal">
+      <dt>Nº</dt>
+      <dd>[% process.id %]</dd>
+      <dt>Requerentes</dt>
+      <dd>[% process.plaintiffs_names.join(', ') %]</dd>
+      <dt>Representantes Legais</dt>
+      <dd>[% process.representants_names.join(', ') %]</dd>
+      <dt>Requeridos</dt>
+      <dd>[% process.defendants_names.join(', ') %]</dd>
+      <dt>Tipo</dt>
+      <dd>[% process.process_type.name %]</dd>
+      <dt>Responsáveis</dt>
+      <dd>[% process.keepers_names.join(', ') %]</dd>
+      <dt>Turma</dt>
+      <dd>[% process.class.name %]</dd>
+      <dt>Nº do processo judicial</dt>
+      <dd>[% process.judicial_process_number %]</dd>
+      <dt>Descrição</dt>
+      <dd>[% process.description.replace('\n', '<br>') %]</dd>
+      <dt>Data de Criação</dt>
+      <dd>[% process.created.strftime('%d/%m/%y %H:%M') %]</dd>
+      <dt>Status</dt>
+      <dd>[% process.status %]</dd>
+      <dt>Ativação</dt>
+      <dd>[% process.active_str %]</dd>
+    </dl>
+  </div>
+
+  <div class="col-lg-6 col-md-6">
+    <h2>Anexar Arquivo</h2>
+    <form method="post" enctype="multipart/form-data" class="form" role="form">
+      <div class="form-group">
+        <label>Arquivo</label>
+        <input type="file" name="file" >
+      </div>
+      <input type="submit" value="Enviar" class="btn btn-primary">
+    </form>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h1>Processos</h1>
+</div>
+
+<form name="search_process" class="form">
+  <div class="input-group">
+    <input type="text" name="q" class="form-control" value="[% search_query %]">
+    <div class="input-group-btn">
+      <a href="#" class="btn btn-default" onclick="clean_form(); return false;">Limpar</a>
+      <input type="submit" value="Enviar" class="btn btn-default">
+    </div>
+  </div><!-- /input-group -->
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nº</th>
+      <th>Data de Criação</th>
+      <th>Tipo</th>
+      <th>Assistidos</th>
+      <th>Repres. Legais</th>
+      <th>Requeridos</th>
+      <th>Responsáveis</th>
+      <th>Turma</th>
+      <th>Andamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    [% FOREACH process IN processes %]
+    <tr>
+      <td>[% process.id %]</td>
+      <td>
+        <a href="[% c.uri_for_action('/processes/details', [process.id]) %]">
+          [% process.created.strftime('%d/%m/%y %H:%M')  %]
+        </a>
+      </td>
+      <td>[% process.process_type.name %]</td>
+      <td>[% process.plaintiffs_names.join(', ') %]</td>
+      <td>[% process.representants_names.join(', ') %]</td>
+      <td>[% process.defendants_names.join(', ') %]</td>
+      <td>[% process.keepers_names.join(', ') %]</td>
+      <td>[% process.class.name %]</td>
+      <td>[% process.status %]</td>
+    </tr>
+    [% END %]
+  </tbody>
+</table>
+
+[% PROCESS pagination.tt %]
+
+<script>
+'use strict';
+function clean_form() {
+    $('input[name="q"]').val('');
+    $('form').submit();
+}
+</script>
+
